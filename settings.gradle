@@ -23,7 +23,7 @@ dependencyResolutionManagement {
         mavenCentral()
 
         maven {
-            url = uri("https://maven.pkg.github.com/fiserv-ch-ttp-androidsdk/ch-ttp-android-sample-app")
+            url = uri("https://maven.pkg.github.com/fiserv-ch-ttp-androidsdk/ch-ttp-androidsdk")
             credentials {
                 username = "<USERNAME_PROVIDED_BY_FISERV>"
                 password = "<PASSWORD_PROVIDED_BY_FISERV>"
