@@ -1,0 +1,37 @@
+pluginManagement {
+    repositories {
+
+
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+
+
+        google()
+        mavenCentral()
+
+        maven {
+            url = uri("https://maven.pkg.github.com/fiserv-ch-ttp-androidsdk/ch-ttp-android-sample-app")
+            credentials {
+                username = "<USERNAME_PROVIDED_BY_FISERV>"
+                password = "<PASSWORD_PROVIDED_BY_FISERV>"
+            }
+        }
+
+    }
+}
+
+rootProject.name = "commercehub-android-ttp"
+include ':app'
