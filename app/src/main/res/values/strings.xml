@@ -25,6 +25,9 @@
     <string name="ppid">ppid</string>
     <string name="host_port">HOST:PORT</string>
     <string name="re_init_sdk">Re- Init SDK</string>
+    <string name="read_card_data">Read Card</string>
+    <string name="read_card">Read Card Details</string>
+    <string name="check_sdk_status">Check Init SDK Status</string>
     <string name="init_sdk">Init SDK</string>
     <string name="inquiry">Inquiry</string>
     <string name="reference_transactionId">Reference TransactionId</string>
@@ -35,7 +38,7 @@
     <string name="reference_transactionId_void">Reference TransactionId</string>
     <string name="void_transaction">Void Transaction</string>
 
-   <string name="accept_a_ttp_payment">Accept a TTP Payment</string>
+    <string name="accept_a_ttp_payment">Accept a TTP Payment</string>
     <string name="ttp_amount">Amount</string>
     <string name="your_trans_id_ttp">Your Trans Id (Optional)</string>
     <string name="your_order_id_ttp">Your Order Id (Optional)</string>
@@ -61,7 +64,7 @@
     <string name="open">Open</string>
 
     <string name="card_tokenization">Card Tokenization</string>
-   <string name="card_token_your_trans_id">Your Trans Id (Optional)</string>
+    <string name="card_token_your_trans_id">Your Trans Id (Optional)</string>
     <string name="card_token_your_order_id">Your Order Id (Optional)</string>
     <string name="card_token_tokenize_card">Tokenize card</string>
 
@@ -78,11 +81,18 @@
     <string name="version_name">VERSION NAME:</string>
     <string name="version_code">, VERSION CODE:</string>
     <string name="confirm">Confirm</string>
+    <string name="enable">Enable</string>
     <string name="dismiss">Dismiss</string>
     <string name="update_product">Update Product Cost</string>
     <string name="back">Back</string>
     <string name="cancel">Cancel</string>
     <string name="return_home">Return To Home Page</string>
     <string name="payment_done">Payment Completed Successfully!</string>
-
+    <string name="ttp_screen_greeting_message"> Pay to Fiserv </string>
+    <string name="nfc_not_support">NFC is not supported on this device</string>
+    <string name="nfc_disabled">NFC is disabled. Please enable it in settings</string>
+    <string name="ok">Ok</string>
+    <string name="settings">Settings</string>
+    <string name="mc_version_name">MagicCube SDK Version :</string>
+    <string name="ttp_version_name">TTP SDK Version :</string>
 </resources>
