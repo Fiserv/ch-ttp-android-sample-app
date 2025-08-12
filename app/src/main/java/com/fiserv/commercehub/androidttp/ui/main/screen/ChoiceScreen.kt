@@ -28,7 +28,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.fiserv.commercehub.androidttp.BuildConfig
 import com.fiserv.commercehub.androidttp.R
 import com.fiserv.commercehub.androidttp.ui.common.DefaultButton
-import com.fiserv.commercehub.androidttp.ui.main.screen.viewModel.ChoiceScreenViewModel
 import com.fiserv.commercehub.androidttp.ui.main.screen.viewmodel.ChoiceScreenViewModel
 import com.fiserv.commercehub.androidttp.ui.theme.AndroidTapToPayDemoTheme
 
