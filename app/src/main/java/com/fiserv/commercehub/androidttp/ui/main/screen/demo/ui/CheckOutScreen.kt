@@ -51,6 +51,15 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
+/**
+ * Main checkout screen displaying product list, total cost calculation,
+ * payment processing, and transaction details.
+ *
+ * @param popBackStack: function which navigates back to previous screen
+ * @param productData: JSON string containing list of products
+ * @param popUpToChoiceScreen: function which returns to choice screen
+ * @param viewModel: CheckOutViewModel instance for managing checkout state and logic
+ */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun CheckOutScreen(
@@ -76,6 +85,7 @@ fun CheckOutScreen(
             .systemBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        // Top app bar with title and navigation
         CenterAlignedTopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary),
             title = {
@@ -116,8 +126,10 @@ fun CheckOutScreen(
                 }
             }
         )
+        // Product list and cost breakdown section
         if (viewModel.isCheckOutPage.collectAsState().value) {
 
+            // Displaying product list and costs
             CheckOutProductListView(products)
             Column()
             {
@@ -192,6 +204,7 @@ fun CheckOutScreen(
                 }
             }
 
+            // Button to proceed with payment
             Box(modifier = Modifier.padding(10.dp)) {
                 DefaultButton(stringResource(id = R.string.proceed), onClick = {
                     viewModel.onPay(context, calculateTotalCost(products))
@@ -200,6 +213,7 @@ fun CheckOutScreen(
         } else {
 
 
+            // Payment success dialog
             if (viewModel.isPaymentSuccessAlert.collectAsState().value) {
                 LaunchedEffect(Unit) {
                     viewModel.dismiss()
@@ -224,10 +238,10 @@ fun CheckOutScreen(
                                 ),
                                 contentDescription = null,
                                 modifier =
-                                Modifier
-                                    .height(100.dp)
-                                    .width(100.dp)
-                                    .padding(20.dp),
+                                    Modifier
+                                        .height(100.dp)
+                                        .width(100.dp)
+                                        .padding(20.dp),
 
                                 )
                             Spacer(modifier = Modifier.height(16.dp))
@@ -238,6 +252,7 @@ fun CheckOutScreen(
 
 
             }
+            // Transaction details and action buttons
             Column(
                 modifier = Modifier
                     .padding(16.dp)
@@ -266,6 +281,7 @@ fun CheckOutScreen(
 
                 }
 
+                // Transaction information display
                 Spacer(modifier = Modifier.height(20.dp))
                 Image(
                     modifier = Modifier.height(130.dp),
@@ -321,6 +337,7 @@ fun CheckOutScreen(
                     }
                     Spacer(modifier = Modifier.height(10.dp))
 
+                    // Action buttons
                     Row {
                         Text(
                             text = stringResource(R.string.transaction_date),
@@ -360,6 +377,7 @@ fun CheckOutScreen(
         }
 
 
+        // Log console (if visible)
         if (viewModel.isLogPageVisible.collectAsState().value == true) {
             Column(
                 modifier = Modifier
@@ -379,7 +397,12 @@ fun CheckOutScreen(
     }
 }
 
-
+/**
+ * Calculates the total cost of all products in the cart.
+ *
+ * @param products: list of Product objects
+ * @return: total cost of all products (to nearest cent)
+ */
 fun calculateProductCost(products: List<Product>): Double {
 
     return products.foldRight(0.0) { product, total ->
@@ -390,21 +413,42 @@ fun calculateProductCost(products: List<Product>): Double {
     }.roundTo2DecimalPlaces()
 }
 
+/**
+ * Calculates delivery charge based on total product cost.
+ * Current rate is 0.02% of total product cost.
+ * *
+ * @param cost: total cost of products
+ * @return: delivery charge (to nearest cent)
+ */
 fun calculateProductDeliveryCharge(cost: Double): Double {
 
     return ((cost * 0.02) / 100).roundTo2DecimalPlaces()
 }
 
-
+/**
+ * Calculates final total including product cost and delivery charge.
+ *
+ * @param products: list of Product objects
+ * @return: total cost (to nearest cent)
+ */
 fun calculateTotalCost(products: List<Product>): Double {
     return calculateProductCost(products).let { it + calculateProductDeliveryCharge(it) }
         .let { it.roundTo2DecimalPlaces() }
 }
 
+/**
+ * Helper function to round a Double to 2 places.
+ *
+ * @return: input rounded to 2 decimal places (nearest cent)
+ */
 fun Double.roundTo2DecimalPlaces(): Double {
     return String.format("%.2f", this).toDouble()
 }
 
+/**
+ * Preview testing the CheckOutScreen layout.
+ * Shows screen with empty product data.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
@@ -420,13 +464,3 @@ private fun DefaultPreview() {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

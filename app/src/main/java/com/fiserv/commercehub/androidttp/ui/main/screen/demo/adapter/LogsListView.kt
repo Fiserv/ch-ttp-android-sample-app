@@ -23,6 +23,12 @@ import androidx.compose.ui.unit.sp
 import com.fiserv.commercehub.androidttp.ui.theme.AndroidTapToPayDemoTheme
 import kotlinx.coroutines.launch
 
+/**
+ * Displays a scrollable list of logs.
+ *
+ * @param data: list of String logs to be displayed
+ * @param listState: state object to handle scrolling behavior; default rememberLazyListState
+ */
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun LogsListView(
@@ -44,7 +50,11 @@ fun LogsListView(
     }
 }
 
-
+/**
+ * Displays a single log entry.
+ *
+ * @param data: the log string to display
+ */
 @Composable
 fun ShowLogsListItem(data: String) {
     Row(modifier = Modifier
@@ -59,6 +69,10 @@ fun ShowLogsListItem(data: String) {
     }
 }
 
+/**
+ * Preview the ShowLogsListItem component.
+ * Displays a single log entry with sample text.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {

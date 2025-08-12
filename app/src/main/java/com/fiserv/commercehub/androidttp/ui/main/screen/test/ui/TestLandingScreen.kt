@@ -42,6 +42,14 @@ import com.fiserv.commercehub.androidttp.R
 import com.fiserv.commercehub.androidttp.ui.common.DefaultButton
 import com.fiserv.commercehub.androidttp.ui.theme.AndroidTapToPayDemoTheme
 
+/**
+ * Test landing screen that provides SDK initialization configuration.
+ * Configures API credentials, merchant details, and server details.
+ * Displays version information and provides navigation to SDK testing interface.
+ *
+ * @param popBackStack: function which navigates back to previous screen
+ * @param navigateToTestSDKMain: function which navigates to test screen with input configuration
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TestLandingScreen(
@@ -49,6 +57,7 @@ fun TestLandingScreen(
     navigateToTestSDKMain: (String, String, String, String, String, String) -> Unit,
 ) {
 
+    // State holders for fields
     var textApiKey = remember { mutableStateOf("") }
     var textSecreteKey = remember { mutableStateOf("") }
     var textMerchantID = remember { mutableStateOf("") }
@@ -57,6 +66,7 @@ fun TestLandingScreen(
     var textHostPort = remember { mutableStateOf(BuildConfig.host_port) }
     var textVersion = remember { mutableStateOf("") }
 
+    // Initialization from BuildConfig values
     textVersion.value =
         "VERSION NAME: " + BuildConfig.VERSION_NAME.toString() + ", VERSION CODE: " + BuildConfig.VERSION_CODE.toString()
     textApiKey.value = BuildConfig.apiKey.toString()
@@ -72,6 +82,7 @@ fun TestLandingScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
+        // Top app bar with navigation and title
         CenterAlignedTopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary),
             title = {
@@ -94,6 +105,7 @@ fun TestLandingScreen(
 
             }
         )
+        // Main content card; input fields for API keys, merchant details, and server details
         Card(
             border = BorderStroke(1.dp, Color.LightGray),
             colors = CardDefaults.cardColors(containerColor = White),
@@ -164,13 +176,13 @@ fun TestLandingScreen(
 
 
 
-              /*  OutlinedTextField(
-                    value = textMerchantName.value,
-                    onValueChange = { textMerchantName.value = it },
-                    label = { Text(stringResource(R.string.merchant_name)) },
-                    modifier = Modifier.fillMaxWidth(), textStyle = TextStyle(color = Color.Black),
-                )
-                Spacer(modifier = Modifier.height(16.dp))*/
+                /*  OutlinedTextField(
+                      value = textMerchantName.value,
+                      onValueChange = { textMerchantName.value = it },
+                      label = { Text(stringResource(R.string.merchant_name)) },
+                      modifier = Modifier.fillMaxWidth(), textStyle = TextStyle(color = Color.Black),
+                  )
+                  Spacer(modifier = Modifier.height(16.dp))*/
 
 
                 OutlinedTextField(
@@ -246,7 +258,10 @@ fun TestLandingScreen(
 
 }
 
-
+/**
+ * Preview testing the TestLandingScreen layout.
+ * Shows screen with default theme and mock navigation callbacks.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {

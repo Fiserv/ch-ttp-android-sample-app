@@ -17,29 +17,45 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.fiserv.commercehub.androidttp.BuildConfig
 import com.fiserv.commercehub.androidttp.R
 import com.fiserv.commercehub.androidttp.ui.common.DefaultButton
+import com.fiserv.commercehub.androidttp.ui.main.screen.viewModel.ChoiceScreenViewModel
 import com.fiserv.commercehub.androidttp.ui.theme.AndroidTapToPayDemoTheme
 
+
+/**
+ * Initial choice screen that allows users to select between Test and Demo modes.
+ * Displays app logo, description, navigation buttons, and version information.
+ *
+ * @param navigateToDemoHome: function which navigates to demo mode home screen
+ * @param navigateToTestLanding: function which navigates to test mode landing screen
+ */
 @Composable
 fun ChoiceScreen(
     navigateToDemoHome: () -> Unit,
-    navigateToTestLanding: () -> Unit
+    navigateToTestLanding: () -> Unit,
+    viewModel: ChoiceScreenViewModel = viewModel()
 ) {
 
-
+    var context = LocalContext.current
     var textVersion = remember { mutableStateOf("") }
 
     textVersion.value=stringResource(R.string.version_name) +" "+BuildConfig.VERSION_NAME.toString() + stringResource(R.string.version_code) +" "+ BuildConfig.VERSION_CODE.toString()
 
+    var textMagicCubeVersion = remember { mutableStateOf("") }
+    textMagicCubeVersion.value=viewModel.getMagicCubeSDKVersion()
 
+    var textTTPCubeVersion = remember { mutableStateOf("") }
+    textTTPCubeVersion.value=stringResource(R.string.ttp_version_name) +" "+viewModel.getTTPSDKVersion()
 
     Column(
         modifier = Modifier
@@ -48,6 +64,7 @@ fun ChoiceScreen(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // App logo and description
         Spacer(modifier = Modifier.height(50.dp))
         Image(
             modifier = Modifier.height(80.dp),
@@ -63,6 +80,7 @@ fun ChoiceScreen(
         Spacer(modifier = Modifier.weight(1f))
 
 
+        // Navigation buttons
         Spacer(modifier = Modifier.weight(1f))
         DefaultButton(stringResource(R.string.test_mode), onClick = navigateToTestLanding)
         Spacer(modifier = Modifier.height(10.dp))
@@ -82,13 +100,35 @@ fun ChoiceScreen(
                 fontSize = 12.sp,
             )
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(
+                text =   textMagicCubeVersion.value,
+                fontSize = 12.sp,
+            )
+        }
 
-
+        Spacer(modifier = Modifier.height(20.dp))
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(
+                text =   textTTPCubeVersion.value,
+                fontSize = 12.sp,
+            )
+        }
     }
 }
 
 
-
+/**
+ * Preview testing ChoiceScreen layout
+ * Shows screen layout with default theme and mock navigation.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {

@@ -24,8 +24,13 @@ import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+/**
+ * ViewModel for managing product catalog, shopping cart, and TTP integration.
+ * Handles product state, cart operations, and SDK initialization.
+ */
 class ProductViewModel() : ViewModel() {
 
+    // State and logging initialization and publicizing
     private val channel = Channel<String>()
     private val _products = SnapshotStateList<Product>()
     private val _cartSize = MutableStateFlow(0)
@@ -41,12 +46,21 @@ class ProductViewModel() : ViewModel() {
     val isLogPageVisible: StateFlow<Boolean> get() = _isLogPageVisible
     val isLoadingInit: StateFlow<Boolean> = _isLoadingInit
 
+    /**
+     * Initializes product catalog with default items
+     */
     init {
         addProduct(Product(id = 1, productName = "Book", productCost = 12.00, type = 1))
         addProduct(Product(id = 2, productName = "Phone Case", productCost = 20.00, type = 2))
         addProduct(Product(id = 3, productName = "Smart Phone", productCost = 250.0, type = 3))
     }
 
+    /**
+     * Initializes TTP session with required configuration.
+     * Sets up logging channel and initializes SDK.
+     *
+     * @param context: application context for SDK initialization
+     */
     fun initFiservTTPSession(context: Context) {
 
         FiservTTPCardReader.setLoggingChannel(channel)
@@ -73,6 +87,12 @@ class ProductViewModel() : ViewModel() {
         _isLogPageVisible.value = false
     }
 
+    /**
+     * Initializes Fiserv TTP session with required configuration.
+     * Sets up logging channel and initializes SDK.
+     *
+     * @param context: application context for SDK initialization
+     */
     private fun init(
         context: Context,
         secret: String,

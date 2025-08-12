@@ -35,6 +35,12 @@ import com.fiserv.commercehub.androidttp.ui.main.screen.demo.viewModel.ProductVi
 
 import com.fiserv.commercehub.androidttp.ui.theme.AndroidTapToPayDemoTheme
 
+/**
+ * Displays a scrollable list of products in checkout.
+ *
+ * @param product: list of Product items to be displayed
+ * @param listState: state object to handle scrolling behavior; default rememberLazyListState
+ */
 @Suppress("FunctionName")
 @Composable
 fun CheckOutProductListView(
@@ -50,6 +56,12 @@ fun CheckOutProductListView(
     }
 }
 
+/**
+ * Displays a product item card format with following details:
+ * product image, name, cost per unit, quantity, total price.
+ *
+ * @param product: the Product object containing item details
+ */
 @Composable
 fun ShowListItem(product: Product) {
     Card(
@@ -66,7 +78,7 @@ fun ShowListItem(product: Product) {
                 .padding(8.dp)
                 .fillMaxWidth()
         ) {
-
+            // Display product image based on type
             when (product.type) {
                 1 -> Image(
                     painter = painterResource(id = R.drawable.ic_book),
@@ -90,7 +102,7 @@ fun ShowListItem(product: Product) {
                         .width(60.dp)
                 )
             }
-
+            // Set product details based on input
             Column(
                 modifier = Modifier.weight(1f)
             ) {
@@ -114,7 +126,7 @@ fun ShowListItem(product: Product) {
                 )
 
             }
-
+            // Display total price based on quantity and cost
             Column{
                 Spacer(modifier = Modifier
                     .height(20.dp)
@@ -133,10 +145,21 @@ fun ShowListItem(product: Product) {
     }
 }
 
+/**
+ * Calculates the total price for a product based on quantity and unit cost.
+ *
+ * @param qty: the quantity of the product
+ * @param cost: the unit cost of the product
+ * @return the total price as a Double
+ */
 fun calculationQtyAndItemPrice(qty: Int, cost: Double): Double {
     return qty * cost
 }
 
+/**
+ * Preview testing the ShowListItem component with sample data.
+ * Displays a single product item with mock data.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {

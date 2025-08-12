@@ -28,6 +28,12 @@ import com.fiserv.commercehub.androidttp.R
 import com.fiserv.commercehub.androidttp.ui.main.screen.demo.adapter.LogsListView
 import com.fiserv.commercehub.androidttp.ui.theme.FiservColorCode
 
+/**
+ * Creates a default styled button.
+ *
+ * @param text: the text to display on the button
+ * @param onClick: the function executed when the button is clicked
+ */
 @Composable
 fun DefaultButton(
     text: String,
@@ -46,6 +52,12 @@ fun DefaultButton(
     }
 }
 
+/**
+ * Creates a custom styled button with a 150dp fixed width.
+ *
+ * @param text: the text to display on the button
+ * @param onClick: the function executed when the button is clicked
+ */
 @Composable
 fun CustomButton(
     text: String,
@@ -65,6 +77,12 @@ fun CustomButton(
     }
 }
 
+/**
+ * Creates a log console with a header and list of log entries.
+ *
+ * @param data: list of log strings to display in the console
+ * @param onClickDisable: function executed when the close button is clicked
+ */
 @Composable
 fun CustomViewLogConsole(
     data: List<String>,
@@ -115,6 +133,9 @@ fun CustomViewLogConsole(
 
 }
 
+/**
+ * Displays a circular progress indicator.
+ */
 @Composable
 fun CircularProgressBar() {
     CircularProgressIndicator(
@@ -125,9 +146,3 @@ fun CircularProgressBar() {
         strokeWidth = 4.dp
     )
 }
-
-
-
-
-
-
