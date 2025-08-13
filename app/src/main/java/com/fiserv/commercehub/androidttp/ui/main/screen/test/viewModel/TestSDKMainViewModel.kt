@@ -708,40 +708,6 @@ class TestSDKMainViewModel() : ViewModel() {
         }
     }
 
-
-    /**
-     * Calls card reader using NFC/contactless interface.
-     * Captures card data for payment processing.
-     */
-    fun readCardDetails() {
-
-        startLoadingCardRead()
-        var amount = payAmount.value.toString().toBigDecimal()
-
-        CoroutineScope(Dispatchers.Main).launch {
-            FiservTTPCardReader.readCardDetails(
-                amount.roundUpTwoScale(),
-                TransactionType.PURCHASE
-            ).flowOn(Dispatchers.IO)
-                .onCompletion { stopLoadingCardRead() }
-                .single()
-                .onSuccess { readCardDetailsResponse: ReadCardDetailsResponse ->
-                    "Response : ${Gson().toJson(readCardDetailsResponse)}".addLog()
-                }
-                .onFailure {
-                    if (it is FiservTTPCardReaderException) {
-                        "Type: ${it.type} Code: ${it.code} Message:  ${it.message} Additional Info: ${it.additionalInfo}".addLog()
-                    } else {
-                        "Message: ${it.message}".addLog()
-                    }
-                }
-
-
-
-        }
-
-    }
-
     /**
      * Tokenizes card details for secure storage.
      * Generates payment token for future transactions.

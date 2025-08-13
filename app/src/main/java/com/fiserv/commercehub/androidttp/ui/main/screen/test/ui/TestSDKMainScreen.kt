@@ -310,51 +310,6 @@ fun TestSDKMainScreen(
 
             }
 
-
-            // Card read operation
-            Card(
-                border = BorderStroke(1.dp, Color.LightGray),
-                colors = CardDefaults.cardColors(containerColor = White),
-                elevation = CardDefaults.cardElevation(10.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(10.dp),
-            ) {
-
-                Column(
-                    modifier = Modifier
-                        .wrapContentHeight()
-                        .padding(16.dp),
-
-                    ) {
-
-                    if (viewModel.isLoadingReadCard.collectAsState().value == true) {
-                        LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-                        Spacer(modifier = Modifier.height(10.dp))
-                    }
-
-                    Text(
-                        text = stringResource(R.string.read_card),
-                        fontSize = 15.sp,
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Box(
-                        modifier = Modifier
-                            .height(1.dp)
-                            .fillMaxWidth()
-                            .background(color = Color.Black)
-                    ) { }
-                    Spacer(modifier = Modifier.height(10.dp))
-                    DefaultButton(stringResource(R.string.read_card_data), onClick = {  viewModel.readCardDetails(
-                    ) }
-                    )
-                }
-
-
-            }
-
-
             // Inquiry
             Card(
                 border = BorderStroke(1.dp, Color.LightGray),
