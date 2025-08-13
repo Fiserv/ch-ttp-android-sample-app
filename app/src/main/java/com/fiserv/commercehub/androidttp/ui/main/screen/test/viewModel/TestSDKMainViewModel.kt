@@ -30,9 +30,6 @@ import com.fiserv.commercehub.ttp.provider.model.RefundResponse
 import com.fiserv.commercehub.ttp.provider.model.TokenizationResponse
 import com.fiserv.commercehub.ttp.provider.model.TransactionDetailsRequest
 import com.fiserv.commercehub.ttp.provider.model.VoidResponse
-import com.fiserv.commercehub.ttp.provider.util.roundUpTwoScale
-import com.google.gson.Gson
-import com.magiccube.acceptance.TransactionType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
