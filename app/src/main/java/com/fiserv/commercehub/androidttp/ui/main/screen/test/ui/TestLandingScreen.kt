@@ -174,17 +174,6 @@ fun TestLandingScreen(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
-
-
-                /*  OutlinedTextField(
-                      value = textMerchantName.value,
-                      onValueChange = { textMerchantName.value = it },
-                      label = { Text(stringResource(R.string.merchant_name)) },
-                      modifier = Modifier.fillMaxWidth(), textStyle = TextStyle(color = Color.Black),
-                  )
-                  Spacer(modifier = Modifier.height(16.dp))*/
-
-
                 OutlinedTextField(
                     value = textTerminalID.value,
                     onValueChange = { textTerminalID.value = it },
