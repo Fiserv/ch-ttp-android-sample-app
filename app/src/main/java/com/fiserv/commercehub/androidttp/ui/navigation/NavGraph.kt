@@ -13,7 +13,12 @@ import com.fiserv.commercehub.androidttp.ui.main.screen.demo.ui.DemoHomeScreen
 import com.fiserv.commercehub.androidttp.ui.main.screen.test.ui.TestLandingScreen
 import com.fiserv.commercehub.androidttp.ui.main.screen.test.ui.TestSDKMainScreen
 
-
+/**
+ * Main navigation graph for the application starting at ChoiceScreen.
+ * Sets up navigation routes between different screens including choice, demo, test, and checkout flows.
+ *
+ * @param navController: NavHostController to manage app navigation
+ */
 @Composable
 fun NavGraph(navController: NavHostController) {
 
@@ -29,6 +34,13 @@ fun NavGraph(navController: NavHostController) {
     }
 }
 
+/**
+ * Adds the choice screen as a node to the navigation graph with following possible navigation.
+ * This is the initial screen where users can select between Test and Demo modes.
+ *
+ * @param navController: controller object for handling navigation actions
+ * @param navGraphBuilder: builder object for constructing the navigation graph
+ */
 private fun addChoiceScreen(
     navController: NavHostController,
     navGraphBuilder: NavGraphBuilder,
@@ -41,6 +53,12 @@ private fun addChoiceScreen(
     }
 }
 
+/**
+ * Adds the test landing screen as a node to the navigation graph with following possible navigation.
+ *
+ * @param navController: controller object for handling navigation actions
+ * @param navGraphBuilder: builder object for constructing the navigation graph
+ */
 private fun addTestLandingScreen(
     navController: NavHostController,
     navGraphBuilder: NavGraphBuilder,
@@ -64,6 +82,13 @@ private fun addTestLandingScreen(
     }
 }
 
+/**
+ * Adds the demo home screen as a node to the navigation graph with following possible navigation.
+ * Entry point for the demo flow with product selection.
+ *
+ * @param navController: controller object for handling navigation actions
+ * @param navGraphBuilder: builder object for constructing the navigation graph
+ */
 private fun addDemoHomeScreen(
     navHostController: NavHostController,
     navGraphBuilder: NavGraphBuilder,
@@ -76,6 +101,13 @@ private fun addDemoHomeScreen(
     }
 }
 
+/**
+ * Adds the checkout screen to the navigation graph.
+ * This page product data passing and navigation for the checkout flow.
+ *
+ * @param navHostController: controller for handling navigation actions
+ * @param navGraphBuilder: builder for constructing the navigation graph
+ */
 private fun addCheckOutScreen(
     navHostController: NavHostController,
     navGraphBuilder: NavGraphBuilder,
@@ -98,7 +130,14 @@ private fun addCheckOutScreen(
     }
 }
 
-
+/**
+ * Adds the test SDK main screen to the navigation graph.
+ * Configures navigation with required SDK parameters:
+ * API credentials (key/secret), merchant/terminal IDs, PPID and host configuration
+ *
+ * @param navHostController: controller for handling navigation actions
+ * @param navGraphBuilder: builder for constructing the navigation graph
+ */
 private fun addTestSDKMainScreen(
     navHostController: NavHostController,
     navGraphBuilder: NavGraphBuilder,
@@ -154,6 +193,12 @@ private fun addTestSDKMainScreen(
     }
 }
 
+/**
+ * Navigates back to the choice screen by popping the back stack.
+ * Preserves the choice screen as the base destination.
+ *
+ * @param navController: controller for handling navigation actions
+ */
 private fun popUpToChoiceScreen(navController: NavHostController) {
     navController.popBackStack(NavRoute.ChoiceScreen.path, inclusive = false)
 }

@@ -1,6 +1,6 @@
 [versions]
 accompanistSystemuicontroller = "0.28.0"
-agp = "8.7.2"
+agp = "8.9.1"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -11,11 +11,11 @@ activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 lottieCompose = "6.0.0"
 navigationCompose = "2.8.5"
-ttpPayment = "1.0.2"
+ttpPayment = "1.0.12"
 ui = "1.7.6"
 uiToolingPreview = "1.7.6"
 foundationLayoutAndroid = "1.7.2"
-converterGson = "2.9.0"
+converterGson = "2.12.0"
 
 [libraries]
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }

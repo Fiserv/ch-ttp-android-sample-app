@@ -30,6 +30,14 @@ import com.fiserv.commercehub.androidttp.ui.main.screen.demo.viewModel.ProductVi
 import com.fiserv.commercehub.androidttp.ui.theme.AndroidTapToPayDemoTheme
 import com.google.gson.Gson
 
+/**
+ * Main demo home screen that displays a list of productst with cart functionaliy.
+ * Features include product management, checkout navigation, and logging.
+ *
+ * @param viewModel: ProductViewModel instance for managing product state (and associated business logic)
+ * @param navigateToCheckOut: function which navigates to checkout screen
+ * @param popBackStack: function which navigates back to previous screen
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DemoHomeScreen(
@@ -46,6 +54,7 @@ fun DemoHomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
 
         ) {
+        // Top app bar with title and navigation
         CenterAlignedTopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary),
             title = {
@@ -65,6 +74,7 @@ fun DemoHomeScreen(
                 }
             },
 
+            // Action button to toggle log console visibility
             actions = {
 
                 IconButton(onClick = {
@@ -103,13 +113,16 @@ fun DemoHomeScreen(
             Spacer(modifier = Modifier.height(10.dp))
         }
 
+        // Product list display
         ProductListView(viewModel)
+        // Checkout button (only shown when cart has items)
         if (viewModel.cartSize.collectAsState().value == 0) {
 
         } else {
             Box(modifier = Modifier.padding(10.dp)) {
                 DefaultButton(stringResource(id = R.string.Checkout),
                     onClick = {
+                        // Prevent checkout during initialization
                         if(!viewModel.isLoadingInit.value) {
                             viewModel.updateCart()
                                 .let { Gson().toJson(it) }
@@ -123,6 +136,7 @@ fun DemoHomeScreen(
             }
         }
 
+        // Log console (if visible)
         if (viewModel.isLogPageVisible.collectAsState().value == true) {
 
             Column(
@@ -141,6 +155,10 @@ fun DemoHomeScreen(
     }
 }
 
+/**
+ * Preview testing the DemoHomeScreen layout.
+ * Shows screen with mock data.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
@@ -155,6 +173,3 @@ private fun DefaultPreview() {
         }
     }
 }
-
-
-

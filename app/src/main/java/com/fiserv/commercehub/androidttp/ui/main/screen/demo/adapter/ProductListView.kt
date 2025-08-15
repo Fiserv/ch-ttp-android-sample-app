@@ -32,7 +32,13 @@ import com.fiserv.commercehub.androidttp.data.model.Product
 import com.fiserv.commercehub.androidttp.ui.main.screen.demo.viewModel.ProductViewModel
 import com.fiserv.commercehub.androidttp.ui.theme.AndroidTapToPayDemoTheme
 
-
+/**
+ * Displays a scrollable list of products.
+ * Manages product list display, cost editing dialog, and cart functionality.
+ *
+ * @param viewModel: the object containing product data and business logic
+ * @param listState: state object to handle scrolling behavior; default rememberLazyListState
+ */
 @Composable
 fun ProductListView(
     viewModel: ProductViewModel,
@@ -107,7 +113,15 @@ fun ProductListView(
     }
 }
 
-
+/**
+ * Renders a single product card.
+ * Displays product image, details, cost, and quantity controls.
+ *
+ * @param product: the Product object to containing item details
+ * @param onAddToCart: function executed when adding item to cart
+ * @param onDelete: function executed when removing item from cart
+ * @param onEditCost: function executed when editing product cost
+ */
 @Composable
 fun ListItem(
     product: Product,
@@ -228,7 +242,10 @@ fun ListItem(
     }
 }
 
-
+/**
+ * Preview testing the ListItem component.
+ * Displays a sample product item with mock data.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {

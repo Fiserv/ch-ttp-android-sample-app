@@ -27,16 +27,22 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.logging.Handler
 
+/**
+ * ViewModel for managing checkout flow and payment processing.
+ * Handles payment transactions, refunds, void operations, and logging.
+ */
 class CheckOutViewModel() : ViewModel() {
 
     val channel = Channel<String>()
 
+    // Transaction-related states
     var transactionId: MutableState<String> = mutableStateOf("")
     var orderId: MutableState<String> = mutableStateOf("")
     var merchantId: MutableState<String> = mutableStateOf("")
 
     private val amount: MutableState<Double> = mutableStateOf(0.0)
 
+    // UI-related states and data
     val logData: SnapshotStateList<String> get() = _logData
     val isPaymentSuccessAlert: StateFlow<Boolean> get() = _isPaymentSuccessAlert
     val isCheckOutPage: StateFlow<Boolean> get() = _isCheckOutPage
@@ -53,6 +59,9 @@ class CheckOutViewModel() : ViewModel() {
     private val _isLoadingRefund = MutableStateFlow(false)
     private val _isLoadingPay = MutableStateFlow(false)
 
+    /**
+     * Initializes ViewModel by setting up logging channel/initial state.
+     */
     fun initViewModel() {
         FiservTTPCardReader.setLoggingChannel(channel)
         listenLogChannel(channel)
@@ -136,6 +145,11 @@ class CheckOutViewModel() : ViewModel() {
 
     }
 
+    /**
+     * Processes a refund transaction using stored transaction details.
+     *
+     * @param context: application context for showing Toast messages
+     */
     fun onRefund(context: Context) {
         startLoadingRefund()
         CoroutineScope(Dispatchers.Main).launch {
@@ -168,6 +182,12 @@ class CheckOutViewModel() : ViewModel() {
         }
     }
 
+    /**
+     * Processes a payment transaction with the given amount.
+     *
+     * @param context: application context for showing Toast messages
+     * @param totalAmount: total amount to be charged
+     */
     fun onPay(context: Context, totalAmount: Double) {
         amount.value = totalAmount
         startLoadingPay()
@@ -207,6 +227,11 @@ class CheckOutViewModel() : ViewModel() {
         _isCheckOutPage.value = false
     }
 
+    /**
+     * Voids/cancels the current transaction.
+     *
+     * @param context: application context for showing messages
+     */
     fun voidTransaction(context: Context) {
         startLoadingVoid()
         CoroutineScope(Dispatchers.Main).launch {

@@ -27,4 +27,3 @@ private fun MainScreen() {
         NavGraph(navController)
     }
 }
-
