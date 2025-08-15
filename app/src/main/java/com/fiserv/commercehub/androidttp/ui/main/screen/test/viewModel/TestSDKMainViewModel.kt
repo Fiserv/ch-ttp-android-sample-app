@@ -24,7 +24,6 @@ import com.fiserv.commercehub.ttp.provider.model.Card
 import com.fiserv.commercehub.ttp.provider.model.ChargesResponse
 import com.fiserv.commercehub.ttp.provider.model.FiservTTPConfig
 import com.fiserv.commercehub.ttp.provider.model.PaymentToken
-import com.fiserv.commercehub.ttp.provider.model.ReadCardDetailsResponse
 import com.fiserv.commercehub.ttp.provider.model.ReferenceTransactionDetails
 import com.fiserv.commercehub.ttp.provider.model.RefundResponse
 import com.fiserv.commercehub.ttp.provider.model.TokenizationResponse
