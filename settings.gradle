@@ -22,9 +22,13 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
 
-        /*maven {
+        maven {
             url = uri("https://maven.pkg.github.com/Fiserv/ch-ttp-androidsdk")
-        }*/
+            credentials {
+                username = "USERNAME_PROVIDED_BY_FISERV"
+                password = "PASSWORD_PROVIDED_BY_FISERV"
+            }
+        }
 
     }
 }
