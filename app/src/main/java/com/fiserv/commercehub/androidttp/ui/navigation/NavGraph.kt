@@ -103,7 +103,7 @@ private fun addDemoHomeScreen(
 
 /**
  * Adds the checkout screen to the navigation graph.
- * This page product data passing and navigation for the checkout flow.
+ * This page handles product data passing and navigation for the checkout flow.
  *
  * @param navHostController: controller for handling navigation actions
  * @param navGraphBuilder: builder for constructing the navigation graph

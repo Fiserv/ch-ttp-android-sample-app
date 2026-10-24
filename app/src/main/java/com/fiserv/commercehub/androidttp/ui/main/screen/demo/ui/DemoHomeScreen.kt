@@ -31,7 +31,7 @@ import com.fiserv.commercehub.androidttp.ui.theme.AndroidTapToPayDemoTheme
 import com.google.gson.Gson
 
 /**
- * Main demo home screen that displays a list of productst with cart functionaliy.
+ * Main demo home screen that displays a list of products with cart functionality.
  * Features include product management, checkout navigation, and logging.
  *
  * @param viewModel: ProductViewModel instance for managing product state (and associated business logic)
